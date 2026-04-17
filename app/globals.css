@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-primary font-body antialiased;
+}
+
+.section-title {
+  @apply font-heading text-3xl md:text-4xl tracking-wide;
+}
+
+.section-underline {
+  @apply mt-3 h-px w-20 bg-accent;
+}
+
+.luxury-card {
+  @apply border border-border bg-white rounded-sm shadow-luxury;
+}

@@ -1,0 +1,40 @@
+{
+  "name": "felix-rides",
+  "version": "1.0.0",
+  "description": "Luxury chauffeur website built with Next.js",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [
+    "nextjs",
+    "chauffeur",
+    "luxury-taxi"
+  ],
+  "author": "Felix Rides",
+  "license": "MIT",
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "replicate": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/google.maps": "^3.64.0",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.4.5"
+  }
+}
