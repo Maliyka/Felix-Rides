@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import AddressInput from "./AddressInput";
@@ -35,7 +36,12 @@ export default function BookingWidget() {
   };
 
   return (
-    <div className="luxury-card w-full max-w-5xl p-4 md:p-6">
+    <motion.div
+      className="luxury-card w-full max-w-5xl p-4 md:p-6"
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+    >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <AddressInput label="Pick-up" value={pickup} onSelect={setPickup} placeholder="Enter pick-up location" required />
         <AddressInput label="Drop-off" value={dropoff} onSelect={setDropoff} placeholder="Enter drop-off location" required />
@@ -63,20 +69,30 @@ export default function BookingWidget() {
           </select>
         </div>
       </div>
-      {tripType === "round-trip" && (
-        <div className="mt-4 max-w-xs space-y-2">
-          <label className="text-sm font-medium">Return Date</label>
-          <input type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} className="w-full rounded-sm border border-border px-3 py-2 text-sm" />
-        </div>
-      )}
-      <button
+      <AnimatePresence>
+        {tripType === "round-trip" && (
+          <motion.div
+            className="mt-4 max-w-xs space-y-2"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <label className="text-sm font-medium">Return Date</label>
+            <input type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} className="w-full rounded-sm border border-border px-3 py-2 text-sm" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <motion.button
         type="button"
         onClick={getQuote}
         disabled={!canSubmit}
+        whileHover={{ y: -2, scale: 1.01 }}
+        whileTap={{ scale: 0.98 }}
         className="mt-5 rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white disabled:cursor-not-allowed disabled:opacity-60"
       >
         Get a Quote
-      </button>
-    </div>
+      </motion.button>
+    </motion.div>
   );
 }

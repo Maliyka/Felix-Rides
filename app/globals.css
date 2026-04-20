@@ -20,4 +20,10 @@ body {
 
 .luxury-card {
   @apply border border-border bg-white rounded-sm shadow-luxury;
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+}
+
+.luxury-card:hover {
+  border-color: #d8c07a;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.1);
 }

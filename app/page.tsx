@@ -5,6 +5,7 @@ import BookingWidget from "@/components/BookingWidget";
 import AnimatedSection from "@/components/AnimatedSection";
 import FleetCard from "@/components/FleetCard";
 import TestimonialCard from "@/components/TestimonialCard";
+import HeroIntro from "@/components/HeroIntro";
 import { fleetData } from "@/lib/fleetData";
 
 export default function HomePage() {
@@ -18,18 +19,14 @@ export default function HomePage() {
         }}
       >
         <div className="mx-auto flex h-full max-w-7xl flex-col items-start justify-center gap-8">
-          <div className="max-w-2xl text-white">
-            <p className="mb-3 uppercase tracking-[0.2em] text-accent">Driven For You</p>
-            <h1 className="font-heading text-5xl leading-tight md:text-6xl">Luxury Chauffeur Service in Every Mile</h1>
-            <p className="mt-4 text-lg text-white/80">Private airport transfers, executive rides, and bespoke travel in premium comfort.</p>
-          </div>
+          <HeroIntro />
           <Suspense fallback={<div className="luxury-card w-full max-w-5xl p-6 text-sm text-secondary">Loading booking widget...</div>}>
             <BookingWidget />
           </Suspense>
         </div>
       </section>
 
-      <AnimatedSection className="mx-auto max-w-7xl px-4 py-20">
+      <AnimatedSection className="mx-auto max-w-7xl px-4 py-20" delay={0.05}>
         <h2 className="section-title">How It Works</h2>
         <div className="section-underline" />
         <div className="mt-10 grid gap-6 md:grid-cols-4">
@@ -42,7 +39,7 @@ export default function HomePage() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="bg-soft px-4 py-20">
+      <AnimatedSection className="bg-soft px-4 py-20" delay={0.08}>
         <div className="mx-auto max-w-7xl">
           <h2 className="section-title">Why Clients Choose Felix Rides</h2>
           <div className="section-underline" />
@@ -63,7 +60,7 @@ export default function HomePage() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="mx-auto max-w-7xl px-4 py-20">
+      <AnimatedSection className="mx-auto max-w-7xl px-4 py-20" delay={0.1}>
         <h2 className="section-title">Fleet Preview</h2>
         <div className="section-underline" />
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -73,7 +70,7 @@ export default function HomePage() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="bg-soft px-4 py-20">
+      <AnimatedSection className="bg-soft px-4 py-20" delay={0.12}>
         <div className="mx-auto max-w-7xl">
           <h2 className="section-title">Client Testimonials</h2>
           <div className="section-underline" />
@@ -91,7 +88,7 @@ export default function HomePage() {
             <h2 className="font-heading text-3xl text-white">Ready to Ride in Style?</h2>
             <p className="mt-2 text-white/70">Book your premium chauffeur journey in under two minutes.</p>
           </div>
-          <Link href="/book" className="rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white">
+          <Link href="/book" className="rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-luxury">
             Book Now
           </Link>
         </div>

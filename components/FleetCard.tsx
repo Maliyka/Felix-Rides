@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Vehicle } from "@/lib/fleetData";
 
 type FleetCardProps = {
@@ -8,9 +11,18 @@ type FleetCardProps = {
 
 export default function FleetCard({ vehicle }: FleetCardProps) {
   return (
-    <article className="luxury-card overflow-hidden">
-      <div className="relative h-52 w-full">
-        <Image src={vehicle.image} alt={vehicle.name} fill className="object-cover" />
+    <motion.article
+      className="luxury-card overflow-hidden"
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+    >
+      <div className="relative h-52 w-full overflow-hidden">
+        <Image
+          src={vehicle.image}
+          alt={vehicle.name}
+          fill
+          className="object-cover transition-transform duration-500 hover:scale-105"
+        />
       </div>
       <div className="space-y-3 p-5">
         <div className="flex items-center justify-between gap-3">
@@ -26,11 +38,11 @@ export default function FleetCard({ vehicle }: FleetCardProps) {
         </ul>
         <Link
           href={`/book?vehicle=${encodeURIComponent(vehicle.name)}`}
-          className="inline-block rounded-sm border border-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent hover:bg-accent hover:text-white"
+          className="inline-block rounded-sm border border-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-white"
         >
           Book This Car
         </Link>
       </div>
-    </article>
+    </motion.article>
   );
 }
