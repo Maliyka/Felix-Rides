@@ -6,6 +6,7 @@ import { sendEmail } from "@/lib/emailjs";
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -16,12 +17,14 @@ export default function ContactForm() {
       await sendEmail({
         from_name: name,
         from_email: email,
+        phone,
         message,
-        to_email: "bookings@felixrides.com"
+        to_email: "info@felixrides.com"
       });
       setStatus("success");
       setName("");
       setEmail("");
+      setPhone("");
       setMessage("");
     } catch {
       setStatus("error");
@@ -32,6 +35,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="luxury-card space-y-4 p-6">
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Name" className="w-full rounded-sm border border-border px-3 py-2 text-sm" />
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Email" className="w-full rounded-sm border border-border px-3 py-2 text-sm" />
+      <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required placeholder="Contact Number" className="w-full rounded-sm border border-border px-3 py-2 text-sm" />
       <textarea value={message} onChange={(e) => setMessage(e.target.value)} required placeholder="Message" className="min-h-36 w-full rounded-sm border border-border px-3 py-2 text-sm" />
       <button type="submit" className="rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white" disabled={status === "loading"}>
         {status === "loading" ? "Sending..." : "Send Message"}

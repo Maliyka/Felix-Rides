@@ -1,7 +1,4 @@
-"use client";
-
 import { LucideIcon } from "lucide-react";
-import { motion } from "framer-motion";
 
 type ServiceCardProps = {
   icon: LucideIcon;
@@ -11,16 +8,12 @@ type ServiceCardProps = {
 
 export default function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
   return (
-    <motion.article
-      className="luxury-card p-6"
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.25 }}
-    >
-      <motion.div whileHover={{ rotate: -8, scale: 1.08 }} transition={{ duration: 0.25 }}>
+    <article className="luxury-card p-6">
+      <div className="transition-transform duration-300 hover:-translate-y-1 hover:rotate-[-8deg] hover:scale-105">
         <Icon className="text-accent" />
-      </motion.div>
+      </div>
       <h3 className="mt-4 font-heading text-xl">{title}</h3>
       <p className="mt-3 text-sm leading-6 text-secondary">{description}</p>
-    </motion.article>
+    </article>
   );
 }

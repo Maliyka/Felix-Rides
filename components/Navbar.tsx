@@ -10,8 +10,8 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/fleet", label: "Fleet" },
   { href: "/services", label: "Services" },
-  { href: "/book", label: "Book Now" },
-  { href: "/contact", label: "Contact" }
+  { href: "/contact", label: "Contact" },
+  { href: "/book", label: "Book Now" }
 ];
 
 export default function Navbar() {
@@ -22,12 +22,12 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur-sm">
       <div className="border-b border-border bg-soft">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs text-secondary md:text-sm">
-          <a href="tel:+447700900123" className="inline-flex items-center gap-2 hover:text-primary">
+          <a href="tel:+442046171512" className="inline-flex items-center gap-2 hover:text-primary">
             <PhoneCall size={14} />
-            +44 7700 900123
+            +44 20 4617 1512
           </a>
-          <a href="mailto:bookings@felixrides.com" className="hover:text-primary">
-            bookings@felixrides.com
+          <a href="mailto:info@felixrides.com" className="hover:text-primary">
+            info@felixrides.com
           </a>
         </div>
       </div>
@@ -45,9 +45,13 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`text-sm uppercase tracking-wide transition-colors duration-300 ${
-                pathname === item.href ? "text-accent" : "text-primary hover:text-accent"
-              }`}
+              className={
+                item.href === "/book"
+                  ? "rounded-sm border border-accent bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-luxury"
+                  : `text-sm uppercase tracking-wide transition-colors duration-300 ${
+                      pathname === item.href ? "text-accent" : "text-primary hover:text-accent"
+                    }`
+              }
             >
               {item.label}
             </Link>
@@ -80,9 +84,11 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    className={`text-sm uppercase tracking-wide ${
-                      pathname === item.href ? "text-accent" : "text-primary"
-                    }`}
+                    className={
+                      item.href === "/book"
+                        ? "inline-block rounded-sm border border-accent bg-accent px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white"
+                        : `text-sm uppercase tracking-wide ${pathname === item.href ? "text-accent" : "text-primary"}`
+                    }
                     onClick={() => setOpen(false)}
                   >
                     {item.label}

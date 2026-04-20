@@ -55,7 +55,7 @@ export default function BookingForm() {
       };
 
       await sendEmail(payload);
-      await sendEmail({ ...payload, to_email: "bookings@felixrides.com" });
+      await sendEmail({ ...payload, to_email: "info@felixrides.com" });
       setStatus("success");
     } catch (error) {
       setStatus("error");

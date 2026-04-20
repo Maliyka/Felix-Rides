@@ -21,17 +21,17 @@ export default function Footer() {
         <div>
           <h4 className="font-heading text-lg">Contact</h4>
           <ul className="mt-3 space-y-2 text-sm text-secondary">
-            <li>+44 7700 900123</li>
-            <li>bookings@felixrides.com</li>
-            <li>London, United Kingdom</li>
+            <li>+44 20 4617 1512</li>
+            <li>info@felixrides.com</li>
+            <li>Regus, 450 BATH ROAD, LONGFORD, HEATHROW, UB7 0EB</li>
           </ul>
         </div>
         <div>
           <h4 className="font-heading text-lg">Follow</h4>
           <div className="mt-3 flex gap-3 text-secondary">
             <a href="#" aria-label="Website"><Globe size={18} /></a>
-            <a href="mailto:bookings@felixrides.com" aria-label="Email"><Mail size={18} /></a>
-            <a href="tel:+447700900123" aria-label="Phone"><Phone size={18} /></a>
+            <a href="mailto:info@felixrides.com" aria-label="Email"><Mail size={18} /></a>
+            <a href="tel:+442046171512" aria-label="Phone"><Phone size={18} /></a>
           </div>
         </div>
       </div>

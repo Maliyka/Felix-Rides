@@ -29,11 +29,34 @@ export default function HomePage() {
       <AnimatedSection className="mx-auto max-w-7xl px-4 py-20" delay={0.05}>
         <h2 className="section-title">How It Works</h2>
         <div className="section-underline" />
+        <p className="mt-4 max-w-3xl text-secondary">
+          From your first search to the final drop-off, every stage is designed to be simple, transparent, and premium.
+          Enjoy fixed pricing, executive vehicles, and professional chauffeurs with real-time communication.
+        </p>
         <div className="mt-10 grid gap-6 md:grid-cols-4">
-          {["Search", "Choose Vehicle", "Enter Details", "Confirm"].map((step, idx) => (
-            <article key={step} className="luxury-card p-6">
+          {[
+            {
+              title: "Search & Plan",
+              detail: "Enter your pick-up, destination, date, and time. Choose one-way or round-trip travel in seconds."
+            },
+            {
+              title: "Choose Vehicle",
+              detail: "Select the ideal class for your trip, from Business Class to premium SUVs and executive MPVs."
+            },
+            {
+              title: "Enter Details",
+              detail: "Add passenger details, luggage count, flight number, and special requests for a tailored experience."
+            },
+            {
+              title: "Confirm & Relax",
+              detail: "Receive confirmation by email, then enjoy punctual chauffeur service with live support when needed."
+            }
+          ].map((step, idx) => (
+            <article key={step.title} className="luxury-card relative p-6">
               <p className="text-xs uppercase tracking-wide text-accent">Step {idx + 1}</p>
-              <h3 className="mt-2 font-heading text-xl">{step}</h3>
+              <h3 className="mt-2 font-heading text-xl">{step.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-secondary">{step.detail}</p>
+              <div className="mt-4 h-px w-12 bg-accent/70" />
             </article>
           ))}
         </div>

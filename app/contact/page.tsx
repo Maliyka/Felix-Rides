@@ -17,11 +17,12 @@ export default function ContactPage() {
         <ContactForm />
         <div className="space-y-5">
           <div className="luxury-card p-6 text-sm text-secondary">
-            <p><span className="text-primary">Phone:</span> +44 7700 900123</p>
-            <p className="mt-2"><span className="text-primary">Email:</span> bookings@felixrides.com</p>
+            <p><span className="text-primary">Phone:</span> +44 20 4617 1512</p>
+            <p className="mt-2"><span className="text-primary">Email:</span> info@felixrides.com</p>
+            <p className="mt-2"><span className="text-primary">Address:</span> Regus, 450 BATH ROAD, LONGFORD, HEATHROW, UB7 0EB</p>
             <p className="mt-2">
               <span className="text-primary">WhatsApp:</span>{" "}
-              <a href="https://wa.me/447700900123" target="_blank" rel="noreferrer" className="text-accent">
+              <a href="https://wa.me/442046171512" target="_blank" rel="noreferrer" className="text-accent">
                 Chat with us
               </a>
             </p>
@@ -29,7 +30,7 @@ export default function ContactPage() {
           <div className="overflow-hidden rounded-sm border border-border">
             <iframe
               title="Felix Rides map"
-              src="https://maps.google.com/maps?q=London&t=&z=12&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=Regus%2C%20450%20BATH%20ROAD%2C%20LONGFORD%2C%20HEATHROW%2C%20UB7%200EB&t=&z=14&ie=UTF8&iwloc=&output=embed"
               className="h-[360px] w-full"
               loading="lazy"
             />
