@@ -30,8 +30,8 @@ export default function FleetCard({ vehicle }: FleetCardProps) {
           <span className="rounded-sm bg-soft px-2 py-1 text-xs text-secondary">{vehicle.classType}</span>
         </div>
         <ul className="space-y-1 text-sm text-secondary">
-          <li>{vehicle.passengers} Passengers</li>
-          <li>{vehicle.luggage} Luggage</li>
+          <li>Passenger(s): {vehicle.passengers}</li>
+          <li>Suitcase(s): {vehicle.luggage}</li>
           {vehicle.features.slice(0, 2).map((feature) => (
             <li key={feature}>{feature}</li>
           ))}

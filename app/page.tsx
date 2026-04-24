@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { Suspense } from "react";
-import { Clock3, Plane, ShieldCheck, UserCheck } from "lucide-react";
-import BookingWidget from "@/components/BookingWidget";
+import { BadgeCheck, Car, Clock3, FileText, Plane, Search, ShieldCheck, UserCheck } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 import AnimatedSection from "@/components/AnimatedSection";
-import FleetCard from "@/components/FleetCard";
-import TestimonialCard from "@/components/TestimonialCard";
 import HeroIntro from "@/components/HeroIntro";
-import { fleetData } from "@/lib/fleetData";
+import FleetPreviewSlider from "@/components/FleetPreviewSlider";
+import TestimonialSlider from "@/components/TestimonialSlider";
 
 export default function HomePage() {
   return (
@@ -18,51 +16,22 @@ export default function HomePage() {
             "linear-gradient(rgba(12,12,12,.68), rgba(12,12,12,.68)), url('https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1800&q=80')"
         }}
       >
-        <div className="mx-auto flex h-full max-w-7xl flex-col items-start justify-center gap-8">
-          <HeroIntro />
-          <Suspense fallback={<div className="luxury-card w-full max-w-5xl p-6 text-sm text-secondary">Loading booking widget...</div>}>
-            <BookingWidget />
-          </Suspense>
+        <div className="mx-auto flex h-full max-w-7xl flex-col items-start justify-center gap-10 lg:flex-row lg:items-center lg:justify-between">
+          <div className="w-full lg:max-w-2xl">
+            <HeroIntro />
+          </div>
+          <div className="w-full lg:ml-auto lg:max-w-md">
+            <div className="mb-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent">Enquiry</p>
+              <h2 className="font-heading text-2xl text-white">Quick Enquiry</h2>
+              <p className="mt-1 text-sm text-white/75">Send your request and we’ll reply shortly.</p>
+            </div>
+            <ContactForm />
+          </div>
         </div>
       </section>
 
-      <AnimatedSection className="mx-auto max-w-7xl px-4 py-20" delay={0.05}>
-        <h2 className="section-title">How It Works</h2>
-        <div className="section-underline" />
-        <p className="mt-4 max-w-3xl text-secondary">
-          From your first search to the final drop-off, every stage is designed to be simple, transparent, and premium.
-          Enjoy fixed pricing, executive vehicles, and professional chauffeurs with real-time communication.
-        </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-4">
-          {[
-            {
-              title: "Search & Plan",
-              detail: "Enter your pick-up, destination, date, and time. Choose one-way or round-trip travel in seconds."
-            },
-            {
-              title: "Choose Vehicle",
-              detail: "Select the ideal class for your trip, from Business Class to premium SUVs and executive MPVs."
-            },
-            {
-              title: "Enter Details",
-              detail: "Add passenger details, luggage count, flight number, and special requests for a tailored experience."
-            },
-            {
-              title: "Confirm & Relax",
-              detail: "Receive confirmation by email, then enjoy punctual chauffeur service with live support when needed."
-            }
-          ].map((step, idx) => (
-            <article key={step.title} className="luxury-card relative p-6">
-              <p className="text-xs uppercase tracking-wide text-accent">Step {idx + 1}</p>
-              <h3 className="mt-2 font-heading text-xl">{step.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-secondary">{step.detail}</p>
-              <div className="mt-4 h-px w-12 bg-accent/70" />
-            </article>
-          ))}
-        </div>
-      </AnimatedSection>
-
-      <AnimatedSection className="bg-soft px-4 py-20" delay={0.08}>
+      <AnimatedSection className="bg-soft px-4 py-20" delay={0.05}>
         <div className="mx-auto max-w-7xl">
           <h2 className="section-title">Why Clients Choose Felix Rides</h2>
           <div className="section-underline" />
@@ -83,13 +52,69 @@ export default function HomePage() {
         </div>
       </AnimatedSection>
 
+      <AnimatedSection className="mx-auto max-w-7xl px-4 py-20" delay={0.08}>
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="section-title">How It Works</h2>
+          <div className="mx-auto section-underline" />
+          <p className="mt-4 text-secondary">
+            A premium experience in four simple steps—designed for speed, clarity, and comfort.
+          </p>
+        </div>
+
+        <div className="relative mt-12">
+          <div className="pointer-events-none absolute left-1/2 top-7 hidden h-px w-[92%] -translate-x-1/2 bg-border md:block" />
+          <div className="grid gap-6 md:grid-cols-4">
+            {[
+              {
+                icon: Search,
+                title: "Search & Plan",
+                detail: "Enter pick-up, destination, date & time. Choose one-way or round-trip in seconds."
+              },
+              {
+                icon: Car,
+                title: "Choose Vehicle",
+                detail: "Select Business, First Class, SUV or MPV—perfectly matched to your journey."
+              },
+              {
+                icon: FileText,
+                title: "Enter Details",
+                detail: "Add passenger info, luggage, flight number (optional) and special instructions."
+              },
+              {
+                icon: BadgeCheck,
+                title: "Confirm & Relax",
+                detail: "Receive confirmation by email, then enjoy punctual chauffeur service with live support."
+              }
+            ].map((step, idx) => (
+              <article key={step.title} className="luxury-card relative overflow-hidden p-6">
+                <div className="mb-5 flex items-center gap-4 md:flex-col md:items-center md:text-center">
+                  <div className="relative">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-border bg-white">
+                      <step.icon className="text-accent" />
+                    </div>
+                    <div className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
+                      {idx + 1}
+                    </div>
+                  </div>
+                  <div className="md:mt-3">
+                    <p className="text-xs uppercase tracking-[0.18em] text-accent">Step {idx + 1}</p>
+                    <h3 className="mt-2 font-heading text-xl">{step.title}</h3>
+                  </div>
+                </div>
+                <p className="text-sm leading-6 text-secondary md:text-center">{step.detail}</p>
+
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-accent/70 to-transparent" />
+              </article>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
       <AnimatedSection className="mx-auto max-w-7xl px-4 py-20" delay={0.1}>
         <h2 className="section-title">Fleet Preview</h2>
         <div className="section-underline" />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {fleetData.slice(0, 3).map((vehicle) => (
-            <FleetCard key={vehicle.id} vehicle={vehicle} />
-          ))}
+        <div className="mt-10">
+          <FleetPreviewSlider />
         </div>
       </AnimatedSection>
 
@@ -97,10 +122,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl">
           <h2 className="section-title">Client Testimonials</h2>
           <div className="section-underline" />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <TestimonialCard name="Charlotte M." review="Seamless airport transfer and outstanding professionalism." />
-            <TestimonialCard name="James R." review="The S-Class was immaculate and the chauffeur was perfectly punctual." />
-            <TestimonialCard name="Olivia K." review="Our corporate guests were deeply impressed by the service quality." />
+          <div className="mt-10">
+            <TestimonialSlider />
           </div>
         </div>
       </AnimatedSection>

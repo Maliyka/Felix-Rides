@@ -4,7 +4,7 @@ import { fleetData } from "@/lib/fleetData";
 
 export const metadata: Metadata = {
   title: "Our Fleet",
-  description: "Explore our luxury chauffeur fleet for every occasion."
+  description: "Where comfort meets convenience in every ride."
 };
 
 export default function FleetPage() {
@@ -13,7 +13,7 @@ export default function FleetPage() {
       <div className="mx-auto max-w-7xl">
         <header className="mb-12 text-center">
           <h1 className="font-heading text-5xl">Our Fleet</h1>
-          <p className="mt-4 text-secondary">Business, first class, MPV and premium SUV options for every journey.</p>
+          <p className="mt-4 text-secondary">Where comfort meets convenience in every ride.</p>
         </header>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {fleetData.map((vehicle) => (

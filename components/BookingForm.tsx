@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import AddressInput from "./AddressInput";
 import { fleetData } from "@/lib/fleetData";
@@ -10,14 +10,15 @@ type TripType = "one-way" | "round-trip";
 
 export default function BookingForm() {
   const params = useSearchParams();
-  const [pickup, setPickup] = useState(params.get("pickup") || "");
-  const [dropoff, setDropoff] = useState(params.get("dropoff") || "");
-  const [date, setDate] = useState(params.get("date") || "");
-  const [time, setTime] = useState(params.get("time") || "");
-  const [tripType, setTripType] = useState<TripType>((params.get("tripType") as TripType) || "one-way");
-  const [returnDate, setReturnDate] = useState(params.get("returnDate") || "");
-  const [vehicle, setVehicle] = useState(params.get("vehicle") || fleetData[0].name);
-  const [passengers, setPassengers] = useState(params.get("passengers") || "1");
+  const didInitFromParams = useRef(false);
+  const [pickup, setPickup] = useState("");
+  const [dropoff, setDropoff] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [tripType, setTripType] = useState<TripType>("one-way");
+  const [returnDate, setReturnDate] = useState("");
+  const [vehicle, setVehicle] = useState(fleetData[0].name);
+  const [passengers, setPassengers] = useState("1");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -26,6 +27,20 @@ export default function BookingForm() {
   const [instructions, setInstructions] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorText, setErrorText] = useState("");
+
+  useEffect(() => {
+    if (didInitFromParams.current) return;
+    didInitFromParams.current = true;
+
+    setPickup(params.get("pickup") || "");
+    setDropoff(params.get("dropoff") || "");
+    setDate(params.get("date") || "");
+    setTime(params.get("time") || "");
+    setTripType(((params.get("tripType") as TripType) || "one-way") as TripType);
+    setReturnDate(params.get("returnDate") || "");
+    setVehicle(params.get("vehicle") || fleetData[0].name);
+    setPassengers(params.get("passengers") || "1");
+  }, [params]);
 
   const isValid = useMemo(() => pickup && dropoff && date && time && name && email && phone, [pickup, dropoff, date, time, name, email, phone]);
 
@@ -54,7 +69,7 @@ export default function BookingForm() {
         instructions: instructions || "N/A"
       };
 
-      await sendEmail(payload);
+      await sendEmail({ ...payload, to_email: email });
       await sendEmail({ ...payload, to_email: "info@felixrides.com" });
       setStatus("success");
     } catch (error) {

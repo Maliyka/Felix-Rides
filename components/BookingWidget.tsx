@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import AddressInput from "./AddressInput";
 
 type TripType = "one-way" | "round-trip";
@@ -10,13 +10,27 @@ type TripType = "one-way" | "round-trip";
 export default function BookingWidget() {
   const router = useRouter();
   const params = useSearchParams();
-  const [pickup, setPickup] = useState(params.get("pickup") || "");
-  const [dropoff, setDropoff] = useState(params.get("dropoff") || "");
-  const [date, setDate] = useState(params.get("date") || "");
-  const [time, setTime] = useState(params.get("time") || "");
-  const [tripType, setTripType] = useState<TripType>((params.get("tripType") as TripType) || "one-way");
-  const [returnDate, setReturnDate] = useState(params.get("returnDate") || "");
-  const [passengers, setPassengers] = useState(params.get("passengers") || "1");
+  const didInitFromParams = useRef(false);
+  const [pickup, setPickup] = useState("");
+  const [dropoff, setDropoff] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [tripType, setTripType] = useState<TripType>("one-way");
+  const [returnDate, setReturnDate] = useState("");
+  const [passengers, setPassengers] = useState("1");
+
+  useEffect(() => {
+    if (didInitFromParams.current) return;
+    didInitFromParams.current = true;
+
+    setPickup(params.get("pickup") || "");
+    setDropoff(params.get("dropoff") || "");
+    setDate(params.get("date") || "");
+    setTime(params.get("time") || "");
+    setTripType(((params.get("tripType") as TripType) || "one-way") as TripType);
+    setReturnDate(params.get("returnDate") || "");
+    setPassengers(params.get("passengers") || "1");
+  }, [params]);
 
   const canSubmit = useMemo(() => pickup && dropoff && date && time, [pickup, dropoff, date, time]);
 
